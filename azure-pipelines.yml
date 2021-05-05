@@ -1,0 +1,26 @@
+trigger:
+- main
+pool:
+  vmImage: 'ubuntu-latest'
+stages:
+- stage: Build
+  displayName: Build stage
+  jobs:  
+  - job: Build_api
+    displayName: Build API
+  - job: Build_frontend
+    displayName: Build Frontend
+- stage: Test
+  displayName: Test stage
+  jobs:  
+  - job: Test_api
+    displayName: Test API
+  - job: Test_frontend
+    displayName: Test Frontend
+- stage: Build_dockerimage
+  displayName: Build and push image to ACR stage
+  jobs:  
+  - job: Build_api_dockerimage
+    displayName: Build and push API image
+  - job: Build_frontend_dockerimage
+    displayName: Build and push frontend image
